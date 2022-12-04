@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: center;
+}
+.main {
+  display: flex;
+  justify-content: center;
+}
+.sketchpad {
+  display: flex;
+  flex-direction: column;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+}
+
+.box {
+  background-color: red;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  border: 1px solid black;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+}
