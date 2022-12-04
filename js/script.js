@@ -1,6 +1,7 @@
 const sketchpad = document.querySelector('.sketchpad');
 
 let mouseDown;
+let boxColor = 'black';
 
 function createBoxes(number) {
   for (let j = 0; j < number; j++) {
@@ -15,13 +16,16 @@ function createBoxes(number) {
       box.addEventListener('mouseup', () => {
         mouseDown = false;
       });
+      box.addEventListener('click', () => {
+        box.style.backgroundColor = boxColor;
+      });
       box.addEventListener('mousemove', () => {
         if (mouseDown === true) {
-          box.style.backgroundColor = "green";
+          box.style.backgroundColor = boxColor;
         } else if (mouseDown === false ) {
           return;
         }
-      })
+      });
       line.appendChild(box);
     }
     sketchpad.appendChild(line);
