@@ -21,12 +21,15 @@ buttonErase.addEventListener('click', () => {
 
 
 function createBoxes(number) {
+  let sketchpadSize = '600';
   for (let j = 0; j < number; j++) {
     let line = document.createElement('div');
     line.classList.add('line');
     for (let i = 0; i < number; i++) {
       let box = document.createElement('div')
       box.classList.add('box');
+      box.style.width = sketchpadSize / number + 'px';
+      box.style.height = sketchpadSize / number + 'px';
       box.addEventListener('mousedown', () => {
         mouseDown = true;
       });
@@ -49,6 +52,8 @@ function createBoxes(number) {
 
   }
 }
+/*
+box width and height = 600 / number px
 
-
+*/
 createBoxes(16);

@@ -9,6 +9,8 @@
 .sketchpad {
   display: flex;
   flex-direction: column;
+  height: 600px;
+  width: 600px;
 }
 
 .line {
@@ -34,9 +36,8 @@ button {
   background-color: rgb(58 139 90);
 }
 .box {
-  /* background-color: red; */
-  width: 40px;
-  height: 40px;
+  /* width: 40px;
+  height: 40px; */
   display: flex;
   border: 1px solid black;
 }
