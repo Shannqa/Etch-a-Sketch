@@ -34,23 +34,7 @@ function createBoxes(number) {
       box.classList.add('box');
       box.style.width = sketchpadSize / number + 'px';
       box.style.height = sketchpadSize / number + 'px';
-      box.addEventListener('mousedown', () => {
-        mouseDown = true;
-      });
-      box.addEventListener('mouseup', () => {
-        mouseDown = false;
-      });
-      box.addEventListener('click', () => {
-        box.style.backgroundColor = boxColor;
-        box.style.borderColor = 'black';
-      });
-      box.addEventListener('mousemove', () => {
-        if (mouseDown === true) {
-          box.style.backgroundColor = boxColor;
-        } else if (mouseDown === false ) {
-          return;
-        }
-      });
+      
       line.appendChild(box);
     }
     sketchpad.appendChild(line);
@@ -61,7 +45,29 @@ function createBoxes(number) {
 
 
 createBoxes(16);
+
+
 const allBoxes = document.querySelectorAll('.box');
+
+for (let i = 0; i < allBoxes.length; i++) {
+allBoxes[i].addEventListener('mousedown', () => {
+  mouseDown = true;
+});
+allBoxes[i].addEventListener('mouseup', () => {
+  mouseDown = false;
+});
+allBoxes[i].addEventListener('click', () => {
+  allBoxes[i].style.backgroundColor = boxColor;
+  allBoxes[i].style.borderColor = 'black';
+});
+allBoxes[i].addEventListener('mousemove', () => {
+  if (mouseDown === true) {
+    allBoxes[i].style.backgroundColor = boxColor;
+  } else if (mouseDown === false ) {
+    return;
+  }
+});
+}
 
 buttonGrid.addEventListener('click', () => {
   
