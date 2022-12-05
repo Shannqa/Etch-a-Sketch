@@ -1,6 +1,6 @@
 const sketchpad = document.querySelector('.sketchpad');
 const buttonErase = document.querySelector('.button-erase');
-const buttonColor = document.querySelector('.button-color');
+const buttonDraw = document.querySelector('.button-draw');
 const buttonGrid = document.querySelector('.button-grid');
 
 
@@ -74,14 +74,31 @@ canvasSlider.addEventListener('input', () => {
     buttonGrid.classList.add('button-active');
 });
 
+/* Draw button */
+buttonDraw.addEventListener('click', () => {
+  if (erase === true) {
+    buttonErase.classList.remove('button-active');
+    buttonDraw.classList.add('button-active');
+    penColor = colorChoice.value;
+    erase = false;
+  } else {
+    buttonErase.classList.add('button-active');
+    buttonDraw.classList.remove('button-active');
+    penColor = 'white';
+    erase = true;
+  }
+});
+
 /* Eraser */
 buttonErase.addEventListener('click', () => {
   if (erase === false) {
     buttonErase.classList.add('button-active');
+    buttonDraw.classList.remove('button-active');
     penColor = 'white';
     erase = true;
   } else {
     buttonErase.classList.remove('button-active');
+    buttonDraw.classList.add('button-active');
     penColor = colorChoice.value;
     erase = false;
   }
@@ -105,18 +122,3 @@ buttonGrid.addEventListener('click', () => {
   }
 });
 
-
-
-/* OLD Color picker 
-buttonColor.addEventListener('click', () => {
-  let color = false;
-  if (color === false) {
-    buttonColor.classList.add('button-active');
-    penColor = 'red';
-    color = true;
-  } else {
-    buttonColor.classList.remove('button-active');
-    penColor = 'black';
-    color = false;
-  }
-  });*/
