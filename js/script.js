@@ -5,97 +5,92 @@ const buttonGrid = document.querySelector('.button-grid');
 
 
 let mouseDown;
-let boxColor = 'black';
+let penColor = 'black';
 let erase = false;
 let grid = true;
 
-buttonErase.addEventListener('click', () => {
-  if (erase === false) {
-    buttonErase.classList.add('button-active');
-    boxColor = 'white';
-    erase = true;
-  } else {
-    buttonErase.classList.remove('button-active');
-    boxColor = 'black';
-    erase = false;
-  }
-  
-});
-
-
-
-function createBoxes(number) {
+/* Create the squares */
+function createSquares(number) {
   let sketchpadSize = '600';
   for (let j = 0; j < number; j++) {
-    let line = document.createElement('div');
-    line.classList.add('line');
+    let row = document.createElement('div');
+    row.classList.add('square-row');
     for (let i = 0; i < number; i++) {
-      let box = document.createElement('div')
-      box.classList.add('box');
-      box.style.width = sketchpadSize / number + 'px';
-      box.style.height = sketchpadSize / number + 'px';
-      
-      line.appendChild(box);
+      let square = document.createElement('div')
+      square.classList.add('square');
+      square.style.width = sketchpadSize / number + 'px';
+      square.style.height = sketchpadSize / number + 'px';
+      row.appendChild(square);
     }
-    sketchpad.appendChild(line);
-
+    sketchpad.appendChild(row);
   }
 }
 
+createSquares(16); // 16 - default number of squares per row/column
 
+const allSquares = document.querySelectorAll('.square');
 
-createBoxes(16);
-
-
-const allBoxes = document.querySelectorAll('.box');
-
-for (let i = 0; i < allBoxes.length; i++) {
-allBoxes[i].addEventListener('mousedown', () => {
+/* Painting */
+for (let i = 0; i < allSquares.length; i++) {
+  allSquares[i].addEventListener('mousedown', () => {
   mouseDown = true;
 });
-allBoxes[i].addEventListener('mouseup', () => {
+allSquares[i].addEventListener('mouseup', () => {
   mouseDown = false;
 });
-allBoxes[i].addEventListener('click', () => {
-  allBoxes[i].style.backgroundColor = boxColor;
-  allBoxes[i].style.borderColor = 'black';
+allSquares[i].addEventListener('click', () => {
+  allSquares[i].style.backgroundColor = penColor;
+  allSquares[i].style.borderColor = 'black';
 });
-allBoxes[i].addEventListener('mousemove', () => {
+allSquares[i].addEventListener('mousemove', () => {
   if (mouseDown === true) {
-    allBoxes[i].style.backgroundColor = boxColor;
+    allSquares[i].style.backgroundColor = penColor;
   } else if (mouseDown === false ) {
     return;
   }
 });
 }
 
+/* Eraser */
+buttonErase.addEventListener('click', () => {
+  if (erase === false) {
+    buttonErase.classList.add('button-active');
+    penColor = 'white';
+    erase = true;
+  } else {
+    buttonErase.classList.remove('button-active');
+    penColor = 'black';
+    erase = false;
+  }
+});
+
+/* Toggle grid */
 buttonGrid.addEventListener('click', () => {
-  
-  if (grid === true) {
+    if (grid === true) {
     buttonGrid.classList.remove('button-active');
-    for (let i = 0; i < allBoxes.length; i++) {
-      allBoxes[i].style.borderStyle = 'none';
+    for (let i = 0; i < allSquares.length; i++) {
+      allSquares[i].style.borderStyle = 'none';
     }
     grid = false;
   } else {
     buttonGrid.classList.add('button-active');
-    for (let j = 0; j < allBoxes.length; j++) {
-      allBoxes[j].style.borderStyle = 'solid';
+    for (let j = 0; j < allSquares.length; j++) {
+      allSquares[j].style.borderStyle = 'solid';
     }
     grid = true;
   }
-}
-)
+});
 
+/* Color picker */
 buttonColor.addEventListener('click', () => {
   let color = false;
   if (color === false) {
     buttonColor.classList.add('button-active');
-    boxColor = 'red';
+    penColor = 'red';
     color = true;
   } else {
     buttonColor.classList.remove('button-active');
-    boxColor = 'black';
+    penColor = 'black';
     color = false;
   }
   });

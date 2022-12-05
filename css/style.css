@@ -25,7 +25,7 @@
   border: 1px solid black;
 }
 
-.line {
+.square-row {
   display: flex;
   flex-direction: row;
 }
@@ -47,9 +47,7 @@ button {
 .button-active {
   background-color: rgb(58 139 90);
 }
-.box {
-  /* width: 40px;
-  height: 40px; */
+.square {
   display: flex;
   border: 1px solid;
 }
