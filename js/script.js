@@ -10,6 +10,19 @@ let erase = false;
 let grid = true;
 const defaultCanvasSize = 16;
 
+const defaultColor = '#000000';
+
+/* Color picker */
+let colorChoice;
+
+window.addEventListener('load', colorStartup, false);
+function colorStartup() {
+  colorChoice = document.querySelector('#color-choice');
+  colorChoice.value = defaultColor;
+  colorChoice.addEventListener('change', () => {penColor = colorChoice.value;}, false);
+  colorChoice.select();
+}
+
 /* Create the squares */
 function createSquares(number) {
   let sketchpadSize = '600';
@@ -69,7 +82,7 @@ buttonErase.addEventListener('click', () => {
     erase = true;
   } else {
     buttonErase.classList.remove('button-active');
-    penColor = 'black';
+    penColor = colorChoice.value;
     erase = false;
   }
 });
@@ -94,7 +107,7 @@ buttonGrid.addEventListener('click', () => {
 
 
 
-/* Color picker */
+/* OLD Color picker 
 buttonColor.addEventListener('click', () => {
   let color = false;
   if (color === false) {
@@ -106,4 +119,4 @@ buttonColor.addEventListener('click', () => {
     penColor = 'black';
     color = false;
   }
-  });
+  });*/

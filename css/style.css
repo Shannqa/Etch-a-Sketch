@@ -24,9 +24,18 @@ h1 {
   background-color: rgb(222, 255, 225);
 }
 
+
 .main {
   display: flex;
   justify-content: center;
+}
+
+.color-picker {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px 0px;
+  font-weight: bold;
 }
 .sketchpad {
   display: flex;
@@ -62,6 +71,9 @@ button {
   background-color: rgb(58 139 90);
 }
 
+#colorChoice {
+
+}
 /* Canvas size slider */
 .slider {
   margin: 10px 0;
