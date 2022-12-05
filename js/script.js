@@ -1,10 +1,13 @@
 const sketchpad = document.querySelector('.sketchpad');
 const buttonErase = document.querySelector('.button-erase');
 const buttonColor = document.querySelector('.button-color');
+const buttonGrid = document.querySelector('.button-grid');
+
 
 let mouseDown;
 let boxColor = 'black';
 let erase = false;
+let grid = true;
 
 buttonErase.addEventListener('click', () => {
   if (erase === false) {
@@ -18,6 +21,7 @@ buttonErase.addEventListener('click', () => {
   }
   
 });
+
 
 
 function createBoxes(number) {
@@ -38,6 +42,7 @@ function createBoxes(number) {
       });
       box.addEventListener('click', () => {
         box.style.backgroundColor = boxColor;
+        box.style.borderColor = 'black';
       });
       box.addEventListener('mousemove', () => {
         if (mouseDown === true) {
@@ -52,8 +57,39 @@ function createBoxes(number) {
 
   }
 }
-/*
-box width and height = 600 / number px
 
-*/
+
+
 createBoxes(16);
+const allBoxes = document.querySelectorAll('.box');
+
+buttonGrid.addEventListener('click', () => {
+  
+  if (grid === true) {
+    buttonGrid.classList.remove('button-active');
+    for (let i = 0; i < allBoxes.length; i++) {
+      allBoxes[i].style.borderStyle = 'none';
+    }
+    grid = false;
+  } else {
+    buttonGrid.classList.add('button-active');
+    for (let j = 0; j < allBoxes.length; j++) {
+      allBoxes[j].style.borderStyle = 'solid';
+    }
+    grid = true;
+  }
+}
+)
+
+buttonColor.addEventListener('click', () => {
+  let color = false;
+  if (color === false) {
+    buttonColor.classList.add('button-active');
+    boxColor = 'red';
+    color = true;
+  } else {
+    buttonColor.classList.remove('button-active');
+    boxColor = 'black';
+    color = false;
+  }
+  });
