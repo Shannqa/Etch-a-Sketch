@@ -82,6 +82,14 @@ buttonGrid.addEventListener('click', () => {
   }
 });
 
+/* Canvas size slider */
+const canvasSlider = document.querySelector('#canvas-slider');
+let output = document.querySelector('#canvas-info');
+output.textContent = canvasSlider.value + 'x' + canvasSlider.value;
+canvasSlider.oninput = function() {
+  output.textContent = this.value + 'x' + this.value;
+}
+
 /* Color picker */
 buttonColor.addEventListener('click', () => {
   let color = false;
