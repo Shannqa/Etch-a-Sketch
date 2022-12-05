@@ -2,7 +2,7 @@ const sketchpad = document.querySelector('.sketchpad');
 const buttonErase = document.querySelector('.button-erase');
 const buttonDraw = document.querySelector('.button-draw');
 const buttonGrid = document.querySelector('.button-grid');
-
+const buttonClear = document.querySelector('.button-clear');
 
 let mouseDown;
 let penColor = 'black';
@@ -66,12 +66,12 @@ canvasSlider.oninput = function() {
 }
 
 canvasSlider.addEventListener('input', () => {
-    while (sketchpad.hasChildNodes()) {
-    sketchpad.removeChild(sketchpad.firstChild); 
-    }
-    createSquares(canvasSlider.value);
-    grid = true;
-    buttonGrid.classList.add('button-active');
+  while (sketchpad.hasChildNodes()) {
+  sketchpad.removeChild(sketchpad.firstChild); 
+  }
+  createSquares(canvasSlider.value);
+  grid = true;
+  buttonGrid.classList.add('button-active');
 });
 
 /* Draw button */
@@ -120,5 +120,19 @@ buttonGrid.addEventListener('click', () => {
     }
     grid = true;
   }
+});
+
+/* Clear canvas */
+buttonClear.addEventListener('click', () => {
+  while (sketchpad.hasChildNodes()) {
+    sketchpad.removeChild(sketchpad.firstChild); 
+  }
+  createSquares(canvasSlider.value);
+  if (grid === false) {
+    const allSquares = document.querySelectorAll('.square');
+    for (let i = 0; i < allSquares.length; i++) {
+      allSquares[i].style.borderStyle = 'none';
+    }
+  }  
 });
 
