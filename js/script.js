@@ -18,6 +18,7 @@ function createSquares(number) {
     for (let i = 0; i < number; i++) {
       let square = document.createElement('div')
       square.classList.add('square');
+      square.setAttribute('draggable', 'false');
       square.style.width = sketchpadSize / number + 'px';
       square.style.height = sketchpadSize / number + 'px';
       row.appendChild(square);

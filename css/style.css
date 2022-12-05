@@ -50,6 +50,7 @@ button {
 .square {
   display: flex;
   border: 1px solid;
+  user-select: none;
 }
 
 .footer {
