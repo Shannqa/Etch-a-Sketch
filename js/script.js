@@ -8,6 +8,7 @@ let mouseDown;
 let penColor = 'black';
 let erase = false;
 let grid = true;
+const defaultCanvasSize = 16;
 
 /* Create the squares */
 function createSquares(number) {
@@ -21,36 +22,44 @@ function createSquares(number) {
       square.setAttribute('draggable', 'false');
       square.style.width = sketchpadSize / number + 'px';
       square.style.height = sketchpadSize / number + 'px';
+
+      square.addEventListener('mousedown', () => {mouseDown = true;})
+      square.addEventListener('mouseup', () => {mouseDown = false;});
+      square.addEventListener('click', () => {
+        square.style.backgroundColor = penColor;
+        square.style.borderColor = 'black';
+      });
+      square.addEventListener('mousemove', () => {
+        if (mouseDown === true) {
+          square.style.backgroundColor = penColor;
+        }
+      });
+
+
       row.appendChild(square);
     }
     sketchpad.appendChild(row);
   }
 }
 
-createSquares(16); // 16 - default number of squares per row/column
+createSquares(defaultCanvasSize); 
 
-const allSquares = document.querySelectorAll('.square');
-
-/* Painting */
-for (let i = 0; i < allSquares.length; i++) {
-  allSquares[i].addEventListener('mousedown', () => {
-  mouseDown = true;
-});
-allSquares[i].addEventListener('mouseup', () => {
-  mouseDown = false;
-});
-allSquares[i].addEventListener('click', () => {
-  allSquares[i].style.backgroundColor = penColor;
-  allSquares[i].style.borderColor = 'black';
-});
-allSquares[i].addEventListener('mousemove', () => {
-  if (mouseDown === true) {
-    allSquares[i].style.backgroundColor = penColor;
-  } else if (mouseDown === false ) {
-    return;
-  }
-});
+/* Canvas size slider */
+const canvasSlider = document.querySelector('#canvas-slider');
+let output = document.querySelector('#canvas-info');
+output.textContent = canvasSlider.value + 'x' + canvasSlider.value;
+canvasSlider.oninput = function() {
+  output.textContent = this.value + 'x' + this.value;
 }
+
+canvasSlider.addEventListener('input', () => {
+    while (sketchpad.hasChildNodes()) {
+    sketchpad.removeChild(sketchpad.firstChild); 
+    }
+    createSquares(canvasSlider.value);
+    grid = true;
+    buttonGrid.classList.add('button-active');
+});
 
 /* Eraser */
 buttonErase.addEventListener('click', () => {
@@ -67,6 +76,7 @@ buttonErase.addEventListener('click', () => {
 
 /* Toggle grid */
 buttonGrid.addEventListener('click', () => {
+  const allSquares = document.querySelectorAll('.square');
     if (grid === true) {
     buttonGrid.classList.remove('button-active');
     for (let i = 0; i < allSquares.length; i++) {
@@ -82,13 +92,7 @@ buttonGrid.addEventListener('click', () => {
   }
 });
 
-/* Canvas size slider */
-const canvasSlider = document.querySelector('#canvas-slider');
-let output = document.querySelector('#canvas-info');
-output.textContent = canvasSlider.value + 'x' + canvasSlider.value;
-canvasSlider.oninput = function() {
-  output.textContent = this.value + 'x' + this.value;
-}
+
 
 /* Color picker */
 buttonColor.addEventListener('click', () => {
