@@ -2,11 +2,22 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .header {
   display: flex;
   justify-content: center;
+  height: 80px;
+  margin-bottom: 30px;
+  align-items: center;
+  background-color: rgb(79 179 133);
+  box-shadow: 0px 3px 5px rgb(88, 88, 88);
+}
+
+h1 {
+  font-family: 'Rammetto One';
+  text-shadow: 3px 3px 3px rgb(198, 209, 201);
 }
 
 .body {
@@ -44,6 +55,7 @@ button {
   font-weight: bold;
   font-size: 16px;
   border: 2px solid rgb(83 139 113);
+  box-shadow: 2px 2px 3px rgb(88, 88, 88);
 }
 
 .button-active {
@@ -63,6 +75,7 @@ button {
   opacity: 0.7;
   -webkit-transition: .2s;
   transition: opacity .2s;
+  box-shadow: 2px 2px 3px rgb(88, 88, 88);
 }
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -89,6 +102,17 @@ button {
 .footer {
   display: flex;
   justify-content: center;
-  margin: 20px;
+  margin-top: 30px;
   padding: 20px;
+  background-color: rgb(79 179 133);
+  box-shadow: 0px -3px 5px rgb(88, 88, 88);
+}
+
+a {
+  margin: 0 3px;
+}
+
+.github {
+  height: 18px;
+  margin: 0 3px;
 }
